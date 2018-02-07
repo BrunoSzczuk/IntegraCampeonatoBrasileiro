@@ -8,7 +8,6 @@ package br.com.wsintegrabolao.obj;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.GeneratedValue;
 
 /**
  *
@@ -16,13 +15,33 @@ import javax.persistence.GeneratedValue;
  */
 @Embeddable
 public class JogoPK implements Serializable{
-    @Column(name = "cd_jogo")
-    @GeneratedValue
+    @Column(name = "cd_jogo")   
     private int id;
 
     @Override
     public String toString() {
         return "JogoPK{" + "id=" + id + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final JogoPK other = (JogoPK) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
     }
 
     public int getId() {

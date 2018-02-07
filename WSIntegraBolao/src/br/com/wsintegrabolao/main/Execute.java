@@ -23,7 +23,12 @@ public class Execute {
     public static void main(String[] args) {
         String json = ConexaoWS.getJsonBolao(ANO);
         System.out.println(ClienteWSController.buscaFase(json));
-        loadJogo(json);
+        ArrayList<Fase> fase = new ArrayList<>(ClienteWSController.buscaFase(json));
+        ArrayList<Jogo_id> jogos = new ArrayList<>( fase.get(0).getJogos().getJogo().values());
+        for (Jogo_id f : jogos){
+            f.toString();
+        }
+        //loadJogo(json);
         System.exit(0);
     }
 
@@ -56,6 +61,7 @@ public class Execute {
             conn.startTransaction();
             ArrayList<Fase> fase = new ArrayList<>(ClienteWSController.buscaFase(json));
             ArrayList<Jogo_id> jogos = new ArrayList<>( fase.get(0).getJogos().getJogo().values());
+            
             for (Jogo_id j : jogos) {
                 ShowStatus.Show(j.toString());
                 conn.persist(j);

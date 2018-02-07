@@ -19,7 +19,7 @@ import java.util.Map;
 public class JogoList implements Serializable{
            
     @JsonProperty("id")
-    private Map<Integer, Jogo_id> jogoId;
+    private Map<JogoPK, Jogo_id> jogoId;
     
     /* Implementar o restante das budegas
     
@@ -39,7 +39,7 @@ public class JogoList implements Serializable{
     public JogoList() {
     }
 
-    public Map<Integer, Jogo_id> getJogo() {
+    public Map<JogoPK, Jogo_id> getJogo() {
         return jogoId;
     }
     

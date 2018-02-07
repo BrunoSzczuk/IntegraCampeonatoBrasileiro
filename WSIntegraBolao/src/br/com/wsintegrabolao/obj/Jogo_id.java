@@ -51,10 +51,9 @@ public class Jogo_id implements Serializable{
 
     //@EmbeddedId
     @JsonIgnore
-    @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
+    @EmbeddedId
     @Column(name = "cd_jogo")
-    private int id;
+    private JogoPK id;
     
     @JsonProperty("posicao")
     @Column(name = "ps_jogo")
