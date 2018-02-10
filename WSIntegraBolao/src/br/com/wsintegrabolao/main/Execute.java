@@ -22,7 +22,6 @@ public class Execute {
 
     public static void main(String[] args) {
         String json = ConexaoWS.getJsonBolao(ANO);
-        System.out.println(ClienteWSController.buscaFase(json));
         loadJogo(json);
         System.exit(0);
     }

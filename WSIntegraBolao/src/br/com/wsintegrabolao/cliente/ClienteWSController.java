@@ -11,6 +11,7 @@ import br.com.wsintegrabolao.obj.Fase;
 import br.com.wsintegrabolao.obj.FaseList;
 import br.com.wsintegrabolao.obj.Jogo_id;
 import br.com.wsintegrabolao.obj.JogoList;
+import br.com.wsintegrabolao.obj.JogoPK;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,12 +45,15 @@ public class ClienteWSController {
         }
         return jogos;
     }
-    
-    public static Collection<Fase> buscaFase(String json){
+
+    public static Collection<Fase> buscaFase(String json) {
         ArrayList<Fase> fases = new ArrayList<>();
         try {
             FaseList lista = mapper.readValue(json, FaseList.class);
             fases = new ArrayList<>(lista.getFase().values());
+            for (Object key : fases.get(0).getJogos().getJogo().keySet()) {
+                fases.get(0).getJogos().getJogo().get(key).setId(new JogoPK((int) key));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

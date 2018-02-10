@@ -30,7 +30,7 @@ public abstract class Jogo_id_ {
 	public static volatile SingularAttribute<Jogo_id, String> estadioId;
 	public static volatile SingularAttribute<Jogo_id, String> urlPosjogo;
 	public static volatile SingularAttribute<Jogo_id, Boolean> classificouGolsFora;
-	public static volatile SingularAttribute<Jogo_id, JogoPK> id;
+	public static volatile SingularAttribute<Jogo_id, Integer> id;
 
 }
 

@@ -54,7 +54,15 @@ public class Jogo_id implements Serializable{
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     @Column(name = "cd_jogo")
-    private int id;
+    private JogoPK id;
+
+    public JogoPK getId() {
+        return id;
+    }
+
+    public void setId(JogoPK id) {
+        this.id = id;
+    }
     
     @JsonProperty("posicao")
     @Column(name = "ps_jogo")
@@ -515,7 +523,7 @@ public class Jogo_id implements Serializable{
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("posicao", posicao).append("njogo", njogo).append("rodada", rodada).append("data", data).append("horario", horario).append("time1", time1).append("time2", time2).append("placar1", placar1).append("placar2", placar2).append("penalti1", penalti1).append("penalti2", penalti2).append("desempateTime1", desempateTime1).append("desempateTime2", desempateTime2).append("estadio", estadio).append("estadioId", estadioId).append("local", local).append("urlPrejogo", urlPrejogo).append("urlPosjogo", urlPosjogo).append("urlVideo", urlVideo).append("eliminouJogoVolta", eliminouJogoVolta).append("classificouGolsFora", classificouGolsFora).toString();
+        return new ToStringBuilder(this).append("id", id).append("posicao", posicao).append("njogo", njogo).append("rodada", rodada).append("data", data).append("horario", horario).append("time1", time1).append("time2", time2).append("placar1", placar1).append("placar2", placar2).append("penalti1", penalti1).append("penalti2", penalti2).append("desempateTime1", desempateTime1).append("desempateTime2", desempateTime2).append("estadio", estadio).append("estadioId", estadioId).append("local", local).append("urlPrejogo", urlPrejogo).append("urlPosjogo", urlPosjogo).append("urlVideo", urlVideo).append("eliminouJogoVolta", eliminouJogoVolta).append("classificouGolsFora", classificouGolsFora).toString();
     }
 
     @Override
