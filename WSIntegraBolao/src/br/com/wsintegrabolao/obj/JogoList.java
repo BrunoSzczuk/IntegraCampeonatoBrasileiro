@@ -9,6 +9,7 @@ package br.com.wsintegrabolao.obj;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -19,16 +20,14 @@ import java.util.Map;
 public class JogoList implements Serializable{
            
     @JsonProperty("id")
-    private Map<Integer, Jogo_id> jogoId;
-    
-    /* Implementar o restante das budegas
+    private Map<Integer, Jogo_id> jogoId;   
     
     @JsonProperty("data")
-    private Map<Date, Jogos_Data> data;
+    private Map<Date, Jogo_data[]> data;
 
-    public Map<Date, Jogos_Data> getData() {
+    public Map<Date, Jogo_data[]>getData() {
         return data;
-    }*/
+    }
 
     @Override
     public String toString() {
@@ -41,6 +40,14 @@ public class JogoList implements Serializable{
 
     public Map<Integer, Jogo_id> getJogo() {
         return jogoId;
+    }
+
+    public Map<Integer, Jogo_id> getJogoId() {
+        return jogoId;
+    }
+
+    public void setJogoId(Map<Integer, Jogo_id> jogoId) {
+        this.jogoId = jogoId;
     }
     
 }

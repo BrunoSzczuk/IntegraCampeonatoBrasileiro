@@ -12,9 +12,12 @@ import br.com.wsintegrabolao.obj.FaseList;
 import br.com.wsintegrabolao.obj.Jogo_id;
 import br.com.wsintegrabolao.obj.JogoList;
 import br.com.wsintegrabolao.obj.JogoPK;
+import br.com.wsintegrabolao.obj.Jogo_data;
+import br.com.wsintegrabolao.obj.Jogo_dataPK;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  *
@@ -51,8 +54,15 @@ public class ClienteWSController {
         try {
             FaseList lista = mapper.readValue(json, FaseList.class);
             fases = new ArrayList<>(lista.getFase().values());
+            //Pegar o ID do Jogo_ID
             for (Object key : fases.get(0).getJogos().getJogo().keySet()) {
                 fases.get(0).getJogos().getJogo().get(key).setId(new JogoPK((int) key));
+            }
+            //Pegar a data do Jogo_data
+            for (Object key : fases.get(0).getJogos().getData().keySet()) {
+                for (Jogo_data j : fases.get(0).getJogos().getData().get(key)){
+                    j.setPk(new Jogo_dataPK(j.getPk().getEquipe(), (Date)key));
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -4,6 +4,7 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>br.com.wsintegrabolao.obj.Equipe</class>
     <class>br.com.wsintegrabolao.obj.Jogo_id</class>
+    <class>br.com.wsintegrabolao.obj.Jogo_data</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/bolao"/>
       <property name="javax.persistence.jdbc.user" value="aplicacao"/>

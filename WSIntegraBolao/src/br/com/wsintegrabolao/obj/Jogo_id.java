@@ -10,9 +10,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -49,15 +46,17 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @Table(name = "jogoid")
 public class Jogo_id implements Serializable{
 
-    //@EmbeddedId
+    @EmbeddedId
     @JsonIgnore
-    @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
     @Column(name = "cd_jogo")
     private JogoPK id;
 
     public JogoPK getId() {
         return id;
+    }
+
+    public Jogo_id(JogoPK id) {
+        this.id = id;
     }
 
     public void setId(JogoPK id) {

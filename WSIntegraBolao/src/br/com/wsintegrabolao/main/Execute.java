@@ -11,6 +11,7 @@ import br.com.wsintegrabolao.dao.ConexaoDAO;
 import br.com.wsintegrabolao.obj.*;
 import br.com.wsintegrabolao.util.ShowStatus;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -18,11 +19,12 @@ import java.util.ArrayList;
  */
 public class Execute {
 
-    private static final String ANO = "2017";
+    private static final String ANO = "2018";
 
     public static void main(String[] args) {
         String json = ConexaoWS.getJsonBolao(ANO);
         loadJogo(json);
+        loadData(json);
         System.exit(0);
     }
 
@@ -54,7 +56,7 @@ public class Execute {
         try {
             conn.startTransaction();
             ArrayList<Fase> fase = new ArrayList<>(ClienteWSController.buscaFase(json));
-            ArrayList<Jogo_id> jogos = new ArrayList<>( fase.get(0).getJogos().getJogo().values());
+            ArrayList<Jogo_id> jogos = new ArrayList<>(fase.get(0).getJogos().getJogo().values());
             for (Jogo_id j : jogos) {
                 ShowStatus.Show(j.toString());
                 conn.persist(j);
@@ -65,6 +67,30 @@ public class Execute {
             conn.rollback();
             e.printStackTrace();
             ShowStatus.Show("Erro: br.com.wsintegrabolao.main.Execute.loadJogo " + e.getMessage());
-        }        
+        }
+    }
+
+    private static void loadData(String json) {
+        ShowStatus.Show("****************************************");
+        ShowStatus.Show("**   Atualização de Datas dos Jogos  ***");
+        ShowStatus.Show("****************************************");
+        ConexaoDAO conn = ConexaoDAO.getInstance();
+        try {
+            conn.startTransaction();
+            ArrayList<Fase> fase = new ArrayList<>(ClienteWSController.buscaFase(json));
+            ArrayList<Jogo_data[]> datas = new ArrayList<>(fase.get(0).getJogos().getData().values());
+            for (Jogo_data[] d : datas) {
+                ShowStatus.Show(Arrays.toString(d));
+                for (Jogo_data jogo : d) {
+                    conn.persist(jogo);
+                }
+            }
+            conn.commit();
+            ShowStatus.Show("Datas dos Jogos salvos com sucesso");
+        } catch (Exception e) {
+            conn.rollback();
+            e.printStackTrace();
+            ShowStatus.Show("Erro: br.com.wsintegrabolao.main.Execute.loadData " + e.getMessage());
+        }
     }
 }
