@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/projetos/bolao/WSIntegraBolao/src/br/com/wsintegrabolao/obj/FaseList.java</file>
+            <file>file:/D:/projetos/bolao/WSIntegraBolao/src/br/com/wsintegrabolao/cliente/ClienteWSController.java</file>
+            <file>file:/D:/projetos/bolao/WSIntegraBolao/src/br/com/wsintegrabolao/main/Execute.java</file>
             <file>file:/D:/projetos/bolao/WSIntegraBolao/src/br/com/wsintegrabolao/obj/Equipe.java</file>
+            <file>file:/D:/projetos/bolao/WSIntegraBolao/src/br/com/wsintegrabolao/obj/JogoPK.java</file>
+            <file>file:/D:/projetos/bolao/WSIntegraBolao/src/br/com/wsintegrabolao/obj/Jogo_id.java</file>
             <file>file:/D:/projetos/bolao/WSIntegraBolao/src/br/com/wsintegrabolao/obj/EquipeList.java</file>
         </group>
     </open-files>

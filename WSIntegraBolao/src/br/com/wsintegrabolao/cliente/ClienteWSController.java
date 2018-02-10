@@ -14,6 +14,8 @@ import br.com.wsintegrabolao.obj.JogoList;
 import br.com.wsintegrabolao.obj.JogoPK;
 import br.com.wsintegrabolao.obj.Jogo_data;
 import br.com.wsintegrabolao.obj.Jogo_dataPK;
+import br.com.wsintegrabolao.obj.Jogo_rodada;
+import br.com.wsintegrabolao.obj.Jogo_rodadaPK;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -60,8 +62,14 @@ public class ClienteWSController {
             }
             //Pegar a data do Jogo_data
             for (Object key : fases.get(0).getJogos().getData().keySet()) {
-                for (Jogo_data j : fases.get(0).getJogos().getData().get(key)){
-                    j.setPk(new Jogo_dataPK(j.getPk().getEquipe(), (Date)key));
+                for (Jogo_data j : fases.get(0).getJogos().getData().get(key)) {
+                    j.setPk(new Jogo_dataPK(j.getPk().getEquipe(), (Date) key));
+                }
+            }
+            //Pegar a rodada do Jogo_rodada
+            for (Object key : fases.get(0).getJogos().getRodada().keySet()) {
+                for (Jogo_rodada r : fases.get(0).getJogos().getRodada().get(key)) {
+                    r.setPk(new Jogo_rodadaPK(r.getPk().getJogo(), (int) key));
                 }
             }
         } catch (Exception e) {

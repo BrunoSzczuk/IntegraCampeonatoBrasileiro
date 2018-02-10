@@ -25,6 +25,7 @@ public class Execute {
         String json = ConexaoWS.getJsonBolao(ANO);
         loadJogo(json);
         loadData(json);
+        loadRodada(json);
         System.exit(0);
     }
 
@@ -91,6 +92,30 @@ public class Execute {
             conn.rollback();
             e.printStackTrace();
             ShowStatus.Show("Erro: br.com.wsintegrabolao.main.Execute.loadData " + e.getMessage());
+        }
+    }
+
+    public static void loadRodada(String json) {
+        ShowStatus.Show("****************************************");
+        ShowStatus.Show("**   Atualização de Rodada dos Jogos  ***");
+        ShowStatus.Show("****************************************");
+        ConexaoDAO conn = ConexaoDAO.getInstance();
+        try {
+            conn.startTransaction();
+            ArrayList<Fase> fase = new ArrayList<>(ClienteWSController.buscaFase(json));
+            ArrayList<Jogo_rodada[]> rodadas = new ArrayList<>(fase.get(0).getJogos().getRodada().values());
+            for (Jogo_rodada[] r : rodadas) {
+                ShowStatus.Show(Arrays.toString(r));
+                for (Jogo_rodada rd : r) {
+                    conn.persist(rd);
+                }
+            }
+            conn.commit();
+            ShowStatus.Show("rodada dos Jogos salvos com sucesso");
+        } catch (Exception e) {
+            conn.rollback();
+            e.printStackTrace();
+            ShowStatus.Show("Erro: br.com.wsintegrabolao.main.Execute.loadRodada " + e.getMessage());
         }
     }
 }

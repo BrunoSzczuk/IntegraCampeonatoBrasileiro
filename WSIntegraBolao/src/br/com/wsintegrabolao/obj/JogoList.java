@@ -25,13 +25,20 @@ public class JogoList implements Serializable{
     @JsonProperty("data")
     private Map<Date, Jogo_data[]> data;
 
-    public Map<Date, Jogo_data[]>getData() {
-        return data;
+    @JsonProperty("rodada")
+    private Map<Integer, Jogo_rodada[]> rodada;
+
+    public Map<Integer, Jogo_rodada[]> getRodada() {
+        return rodada;
+    }
+
+    public void setRodada(Map<Integer, Jogo_rodada[]> rodada) {
+        this.rodada = rodada;
     }
 
     @Override
     public String toString() {
-        return "JogoList{" + "jogo_id=" + jogoId;
+        return "JogoList{" + "jogoId=" + jogoId + ", data=" + data + ", rodada=" + rodada + '}';
     }
     
     
@@ -50,4 +57,7 @@ public class JogoList implements Serializable{
         this.jogoId = jogoId;
     }
     
+    public Map<Date, Jogo_data[]>getData() {
+        return data;
+    }
 }
