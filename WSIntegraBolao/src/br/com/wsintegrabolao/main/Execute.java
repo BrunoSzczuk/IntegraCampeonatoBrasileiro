@@ -7,6 +7,7 @@ package br.com.wsintegrabolao.main;
 
 import br.com.wsintegrabolao.cliente.ClienteWSController;
 import br.com.wsintegrabolao.cliente.ConexaoWS;
+import br.com.wsintegrabolao.dao.ClassificacaoDAO;
 import br.com.wsintegrabolao.dao.ConexaoDAO;
 import br.com.wsintegrabolao.obj.*;
 import br.com.wsintegrabolao.util.ShowStatus;
@@ -125,23 +126,22 @@ public class Execute {
         ShowStatus.Show("****************************************");
         ShowStatus.Show("**   Atualização de Classificacao    ***");
         ShowStatus.Show("****************************************");
-        //ConexaoDAO conn = ConexaoDAO.getInstance();
+        ConexaoDAO conn = ConexaoDAO.getInstance();
         try {
-            //conn.startTransaction();
+            conn.startTransaction();
             ArrayList<Fase> fase = new ArrayList<>(ClienteWSController.buscaFase(json));
             ArrayList<Classificacao_equipe> classificacao = new ArrayList<>(fase.get(0).getClassificacao().getData().values());
-            for (Classificacao_equipe c : classificacao) {
+            for (Classificacao_equipe cl : classificacao) {
+                ClassificacaoDAO c = new ClassificacaoDAO(cl);
                 ShowStatus.Show(c.toString());
-                /*for (Jogo_rodada rd : r) {
-                    conn.persist(rd);
-                }*/
+                conn.persist(c);
             }
-            //conn.commit();
+            conn.commit();
             ShowStatus.Show("Classificacao dos Jogos salvos com sucesso");
         } catch (Exception e) {
-          //  conn.rollback();
+            conn.rollback();
             e.printStackTrace();
-            ShowStatus.Show("Erro: br.com.wsintegrabolao.main.Execute.loadRodada " + e.getMessage());
+            ShowStatus.Show("Erro: br.com.wsintegrabolao.main.Execute.loadClassificacao " + e.getMessage());
         }
     }
 }

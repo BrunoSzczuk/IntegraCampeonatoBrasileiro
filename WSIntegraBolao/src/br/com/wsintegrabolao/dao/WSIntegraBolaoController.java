@@ -6,7 +6,6 @@
 package br.com.wsintegrabolao.dao;
 
 import br.com.wsintegrabolao.obj.*;
-import java.util.Collection;
 
 /**
  *
@@ -14,7 +13,7 @@ import java.util.Collection;
  */
 public class WSIntegraBolaoController {
 
-    private static Collection<Equipe> buscaEquipe() {
-        return null;
+    public static Equipe buscaEquipe(String cdEquipe) {
+        return ConexaoDAO.getInstance().getEm().find(Equipe.class, cdEquipe);
     }
 }

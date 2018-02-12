@@ -5,27 +5,41 @@
  */
 package br.com.wsintegrabolao.obj;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author bruno.szczuk
  */
-@JsonIgnoreProperties (ignoreUnknown = true)
-public class Classificacao_PG implements Serializable{
-    
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
+@Table(name = "classificacaopg")
+public class Classificacao_PG implements Serializable {
+
     @JsonProperty("total")
+    @Column(name = "qt_total")
     private int total;
 
-    public Classificacao_PG() {
-    }
-    
+    @JsonIgnore
+    @Id
+    @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe")
+    private Equipe cdEquipe;
+
     @JsonProperty("mandante")
+    @Column(name = "qt_mandante")
     private int mandante;
-    
+
     @JsonProperty("visitante")
+    @Column(name = "qt_visitante")
     private int visitante;
 
     public int getTotal() {
@@ -52,11 +66,12 @@ public class Classificacao_PG implements Serializable{
         this.visitante = visitante;
     }
 
+    public Classificacao_PG() {
+    }
+
     @Override
     public String toString() {
         return "Classificacao_PG{" + "total=" + total + ", mandante=" + mandante + ", visitante=" + visitante + '}';
     }
-    
-    
-}
 
+}

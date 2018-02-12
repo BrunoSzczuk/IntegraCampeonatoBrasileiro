@@ -5,23 +5,36 @@
  */
 package br.com.wsintegrabolao.obj;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 /**
  *
  * @author bruno.szczuk
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Classificacao_DE implements Serializable{
+public class Classificacao_DE implements Serializable {
+
     @JsonProperty("total")
+    @Column(name = "qt_total")
     private int total;
-    
+
+    @JsonIgnore
+    @Id
+    @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe")
+    private Equipe cdEquipe;
+
     @JsonProperty("mandante")
+    @Column(name = "qt_mandante")
     private int mandante;
-    
+
     @JsonProperty("visitante")
+    @Column(name = "qt_visitante")
     private int visitante;
 
     public int getTotal() {
@@ -62,5 +75,4 @@ public class Classificacao_DE implements Serializable{
         return "Classificacao_DE{" + "total=" + total + ", mandante=" + mandante + ", visitante=" + visitante + '}';
     }
 
-    
 }
