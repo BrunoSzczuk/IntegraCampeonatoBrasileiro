@@ -20,14 +20,26 @@ public class Fase {
     @JsonProperty("id")
     private String id;
 
+    @JsonProperty("classificacao")
+    private Classificacao_equipeList classificacao;
+    
     public void setId(String id) {
         this.id = id;
     }
 
     @Override
     public String toString() {
-        return "Fase{" + "jogos=" + jogos + ", id=" + id + '}';
+        return "Fase{" + "jogos=" + jogos + ", id=" + id + ", classificacao=" + classificacao + '}';
     }
+
+    public Classificacao_equipeList getClassificacao() {
+        return classificacao;
+    }
+
+    public void setClassificacao(Classificacao_equipeList classificacao) {
+        this.classificacao = classificacao;
+    }
+
 
     public JogoList getJogos() {
         return jogos;
