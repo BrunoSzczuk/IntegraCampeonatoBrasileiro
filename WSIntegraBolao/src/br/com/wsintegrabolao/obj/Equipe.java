@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -68,6 +69,64 @@ public class Equipe implements Serializable {
     @JsonProperty("sigla")
     @Column(name = "sg_equipe")
     private String sigla;
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 17 * hash + Objects.hashCode(this.id);
+        hash = 17 * hash + Objects.hashCode(this.nome);
+        hash = 17 * hash + Objects.hashCode(this.nome_comum);
+        hash = 17 * hash + Objects.hashCode(this.nome_slug);
+        hash = 17 * hash + Objects.hashCode(this.sigla);
+        hash = 17 * hash + Objects.hashCode(this.tag);
+        hash = 17 * hash + Objects.hashCode(this.tipo);
+        hash = 17 * hash + Objects.hashCode(this.uri);
+        hash = 17 * hash + Objects.hashCode(this.brasao);
+        hash = 17 * hash + Objects.hashCode(this.cor);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Equipe other = (Equipe) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.nome_comum, other.nome_comum)) {
+            return false;
+        }
+        if (!Objects.equals(this.nome_slug, other.nome_slug)) {
+            return false;
+        }
+        if (!Objects.equals(this.sigla, other.sigla)) {
+            return false;
+        }
+        if (!Objects.equals(this.tag, other.tag)) {
+            return false;
+        }
+        if (!Objects.equals(this.tipo, other.tipo)) {
+            return false;
+        }
+        if (!Objects.equals(this.uri, other.uri)) {
+            return false;
+        }
+        if (!Objects.equals(this.brasao, other.brasao)) {
+            return false;
+        }
+        if (!Objects.equals(this.cor, other.cor)) {
+            return false;
+        }
+        return true;
+    }
 
     @JsonProperty("tag")
     @Column(name = "tg_equipe")

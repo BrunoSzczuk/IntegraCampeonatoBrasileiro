@@ -36,6 +36,28 @@ public class Classificacao_GP implements Serializable{
     }
 
     @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 19 * hash + this.total;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Classificacao_GP other = (Classificacao_GP) obj;
+        if (this.total != other.total) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     public String toString() {
         return "Classificacao_GP{" + "total=" + total + '}';
     }

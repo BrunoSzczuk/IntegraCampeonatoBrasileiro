@@ -6,6 +6,7 @@
 package br.com.wsintegrabolao.obj;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -45,4 +46,27 @@ public class Jogo_data implements Serializable {
         this.pk = pk;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.pk);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Jogo_data other = (Jogo_data) obj;
+        if (!Objects.equals(this.pk, other.pk)) {
+            return false;
+        }
+        return true;
+    }
+
+    
 }

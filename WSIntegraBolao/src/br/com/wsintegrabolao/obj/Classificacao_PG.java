@@ -9,11 +9,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -31,6 +32,7 @@ public class Classificacao_PG implements Serializable {
 
     @JsonIgnore
     @Id
+    @ManyToOne
     @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe")
     private Equipe cdEquipe;
 
@@ -69,6 +71,41 @@ public class Classificacao_PG implements Serializable {
     public Classificacao_PG() {
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + this.total;
+        hash = 37 * hash + Objects.hashCode(this.cdEquipe);
+        hash = 37 * hash + this.mandante;
+        hash = 37 * hash + this.visitante;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Classificacao_PG other = (Classificacao_PG) obj;
+        if (this.total != other.total) {
+            return false;
+        }
+        if (!Objects.equals(this.cdEquipe, other.cdEquipe)) {
+            return false;
+        }
+        if (this.mandante != other.mandante) {
+            return false;
+        }
+        if (this.visitante != other.visitante) {
+            return false;
+        }
+        return true;
+    }
+
+    
     @Override
     public String toString() {
         return "Classificacao_PG{" + "total=" + total + ", mandante=" + mandante + ", visitante=" + visitante + '}';

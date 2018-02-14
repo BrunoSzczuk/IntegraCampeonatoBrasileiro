@@ -94,7 +94,7 @@ public class ConexaoDAO {
                     System.out.println("Erro RollBack ");
                     rex.printStackTrace();
                 }
-                throw new RuntimeException("Erro gravando alteraçoes no Banco de Dados.");
+                throw new RuntimeException("Erro gravando alteraçoes no Banco de Dados. "+ cex);
             }
         }
     }

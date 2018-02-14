@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  *
@@ -39,6 +40,36 @@ public class JogoList implements Serializable{
     @Override
     public String toString() {
         return "JogoList{" + "jogoId=" + jogoId + ", data=" + data + ", rodada=" + rodada + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.jogoId);
+        hash = 53 * hash + Objects.hashCode(this.data);
+        hash = 53 * hash + Objects.hashCode(this.rodada);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final JogoList other = (JogoList) obj;
+        if (!Objects.equals(this.jogoId, other.jogoId)) {
+            return false;
+        }
+        if (!Objects.equals(this.data, other.data)) {
+            return false;
+        }
+        if (!Objects.equals(this.rodada, other.rodada)) {
+            return false;
+        }
+        return true;
     }
     
     

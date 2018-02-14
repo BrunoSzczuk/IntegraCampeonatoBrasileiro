@@ -9,6 +9,7 @@ import br.com.wsintegrabolao.cliente.ClienteWSController;
 import br.com.wsintegrabolao.cliente.ConexaoWS;
 import br.com.wsintegrabolao.dao.ClassificacaoDAO;
 import br.com.wsintegrabolao.dao.ConexaoDAO;
+import br.com.wsintegrabolao.dao.WSIntegraBolaoController;
 import br.com.wsintegrabolao.obj.*;
 import br.com.wsintegrabolao.util.ShowStatus;
 import java.util.ArrayList;

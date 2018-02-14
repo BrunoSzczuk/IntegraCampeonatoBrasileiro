@@ -31,6 +31,29 @@ public class Classificacao_GC implements Serializable{
     public String toString() {
         return "Classificacao_GC{" + "total=" + total + '}';
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 41 * hash + this.total;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Classificacao_GC other = (Classificacao_GC) obj;
+        if (this.total != other.total) {
+            return false;
+        }
+        return true;
+    }
+    
     
     
     

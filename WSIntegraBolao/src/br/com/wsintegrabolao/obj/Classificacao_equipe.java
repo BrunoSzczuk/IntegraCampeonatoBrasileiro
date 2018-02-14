@@ -8,6 +8,7 @@ package br.com.wsintegrabolao.obj;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -162,6 +163,77 @@ public class Classificacao_equipe implements Serializable {
     public float getAproveitamento() {
         return aproveitamento;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.pos);
+        hash = 89 * hash + Objects.hashCode(this.ganho_pos);
+        hash = 89 * hash + Objects.hashCode(this.pontosGols);
+        hash = 89 * hash + Objects.hashCode(this.jogos);
+        hash = 89 * hash + Objects.hashCode(this.vitoria);
+        hash = 89 * hash + Objects.hashCode(this.empate);
+        hash = 89 * hash + Objects.hashCode(this.derrota);
+        hash = 89 * hash + Objects.hashCode(this.golsPro);
+        hash = 89 * hash + Objects.hashCode(this.golsContra);
+        hash = 89 * hash + Objects.hashCode(this.saldoGols);
+        hash = 89 * hash + this.cd;
+        hash = 89 * hash + Float.floatToIntBits(this.aproveitamento);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Classificacao_equipe other = (Classificacao_equipe) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.pos, other.pos)) {
+            return false;
+        }
+        if (!Objects.equals(this.ganho_pos, other.ganho_pos)) {
+            return false;
+        }
+        if (!Objects.equals(this.pontosGols, other.pontosGols)) {
+            return false;
+        }
+        if (!Objects.equals(this.jogos, other.jogos)) {
+            return false;
+        }
+        if (!Objects.equals(this.vitoria, other.vitoria)) {
+            return false;
+        }
+        if (!Objects.equals(this.empate, other.empate)) {
+            return false;
+        }
+        if (!Objects.equals(this.derrota, other.derrota)) {
+            return false;
+        }
+        if (!Objects.equals(this.golsPro, other.golsPro)) {
+            return false;
+        }
+        if (!Objects.equals(this.golsContra, other.golsContra)) {
+            return false;
+        }
+        if (!Objects.equals(this.saldoGols, other.saldoGols)) {
+            return false;
+        }
+        if (this.cd != other.cd) {
+            return false;
+        }
+        if (Float.floatToIntBits(this.aproveitamento) != Float.floatToIntBits(other.aproveitamento)) {
+            return false;
+        }
+        return true;
+    }
+    
 
     public void setAproveitamento(float aproveitamento) {
         this.aproveitamento = aproveitamento;

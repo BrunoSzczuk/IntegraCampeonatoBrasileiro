@@ -9,15 +9,21 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author bruno.szczuk
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
+@Table(name = "classificacaoderrota")
 public class Classificacao_DE implements Serializable {
 
     @JsonProperty("total")
@@ -27,7 +33,42 @@ public class Classificacao_DE implements Serializable {
     @JsonIgnore
     @Id
     @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe")
+    @ManyToOne
     private Equipe cdEquipe;
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + this.total;
+        hash = 47 * hash + Objects.hashCode(this.cdEquipe);
+        hash = 47 * hash + this.mandante;
+        hash = 47 * hash + this.visitante;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Classificacao_DE other = (Classificacao_DE) obj;
+        if (this.total != other.total) {
+            return false;
+        }
+        if (!Objects.equals(this.cdEquipe, other.cdEquipe)) {
+            return false;
+        }
+        if (this.mandante != other.mandante) {
+            return false;
+        }
+        if (this.visitante != other.visitante) {
+            return false;
+        }
+        return true;
+    }
 
     @JsonProperty("mandante")
     @Column(name = "qt_mandante")
