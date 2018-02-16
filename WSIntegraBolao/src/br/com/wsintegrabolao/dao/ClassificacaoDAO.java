@@ -12,7 +12,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,20 +21,31 @@ public class ClassificacaoDAO implements Serializable {
 
     @Column(name = "go_pro")
     private int golsPro;
-    
-    @ManyToOne(optional=false)
-    @Id
-    @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe") 
+
+    @OneToOne
+    @JoinColumn(name = "cd_equipe")
     private Equipe equipe;
+    
+    @Id
+    @Column(name = "cd_equipe")
+    private String cdEquipe;
 
     public Equipe getEquipe() {
         return equipe;
     }
 
+    public String getCdEquipe() {
+        return cdEquipe;
+    }
+
+    public void setCdEquipe(String cdEquipe) {
+        this.cdEquipe = cdEquipe;
+    }
+
     public void setEquipe(Equipe equipe) {
         this.equipe = equipe;
     }
-    
+
     @Column(name = "go_contra")
     private int golsContra;
 
@@ -49,23 +59,23 @@ public class ClassificacaoDAO implements Serializable {
     private String ganho_pos;
 
     @OneToOne(mappedBy = "cdEquipe")
-    @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe")
+    @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe", insertable = true, updatable = true)
     private Classificacao_PG pontosGols;
 
     @OneToOne(mappedBy = "cdEquipe")
-    @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe")
+    @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe", insertable = true, updatable = true)
     private Classificacao_JG jogos;
 
     @OneToOne(mappedBy = "cdEquipe")
-    @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe")
+    @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe", insertable = true, updatable = true)
     private Classificacao_VT vitoria;
-    
+
     @OneToOne(mappedBy = "cdEquipe")
-    @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe")
+    @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe", insertable = true, updatable = true)
     private Classificacao_EM empate;
 
     @OneToOne(mappedBy = "cdEquipe")
-    @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe")
+    @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe", insertable = true, updatable = true)
     private Classificacao_DE derrota;
 
     @Column(name = "pc_aproveitamento")
@@ -77,6 +87,7 @@ public class ClassificacaoDAO implements Serializable {
     public ClassificacaoDAO(Classificacao_equipe eq) {
         this.aproveitamento = eq.getAproveitamento();
         this.equipe = WSIntegraBolaoController.buscaEquipe(eq.getId());
+        this.cdEquipe = equipe.getId();
         this.derrota = eq.getDerrota();
         this.empate = eq.getEmpate();
         this.ganho_pos = eq.getGanho_pos();
@@ -181,6 +192,5 @@ public class ClassificacaoDAO implements Serializable {
     public String toString() {
         return "ClassificacaoDAO{" + "golsPro=" + golsPro + ", equipe=" + equipe + ", golsContra=" + golsContra + ", saldoGols=" + saldoGols + ", pos=" + pos + ", ganho_pos=" + ganho_pos + ", pontosGols=" + pontosGols + ", jogos=" + jogos + ", vitoria=" + vitoria + ", empate=" + empate + ", derrota=" + derrota + ", aproveitamento=" + aproveitamento + '}';
     }
-
 
 }

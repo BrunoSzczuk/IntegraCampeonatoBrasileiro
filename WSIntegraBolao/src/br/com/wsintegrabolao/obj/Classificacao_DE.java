@@ -14,7 +14,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -30,10 +30,13 @@ public class Classificacao_DE implements Serializable {
     @Column(name = "qt_total")
     private int total;
 
-    @JsonIgnore
     @Id
-    @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe")
-    @ManyToOne
+    @Column(name="cd_equipe")
+    private String id;
+    
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "cd_equipe")
     private Equipe cdEquipe;
 
     @Override
@@ -44,6 +47,23 @@ public class Classificacao_DE implements Serializable {
         hash = 47 * hash + this.mandante;
         hash = 47 * hash + this.visitante;
         return hash;
+    }
+
+    public Equipe getCdEquipe() {
+        return cdEquipe;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
+
+    public void setCdEquipe(Equipe cdEquipe) {
+        this.cdEquipe = cdEquipe;
     }
 
     @Override
@@ -113,7 +133,7 @@ public class Classificacao_DE implements Serializable {
 
     @Override
     public String toString() {
-        return "Classificacao_DE{" + "total=" + total + ", mandante=" + mandante + ", visitante=" + visitante + '}';
+        return "Classificacao_DE{" + "total=" + total + ", cdEquipe=" + cdEquipe + ", mandante=" + mandante + ", visitante=" + visitante + '}';
     }
 
 }

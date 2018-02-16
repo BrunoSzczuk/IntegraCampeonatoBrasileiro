@@ -129,15 +129,39 @@ public class Execute {
         ShowStatus.Show("****************************************");
         ConexaoDAO conn = ConexaoDAO.getInstance();
         try {
-            conn.startTransaction();
+            
             ArrayList<Fase> fase = new ArrayList<>(ClienteWSController.buscaFase(json));
             ArrayList<Classificacao_equipe> classificacao = new ArrayList<>(fase.get(0).getClassificacao().getData().values());
             for (Classificacao_equipe cl : classificacao) {
+                conn.startTransaction();
                 ClassificacaoDAO c = new ClassificacaoDAO(cl);
+                Equipe e = WSIntegraBolaoController.buscaEquipe(cl.getId());
+                
+                c.getDerrota().setCdEquipe(e);
+                c.getDerrota().setId(c.getDerrota().getCdEquipe().getId());
+                
+                c.getEmpate().setCdEquipe(e);
+                c.getEmpate().setId(c.getEmpate().getCdEquipe().getId());
+                
+                c.getJogos().setCdEquipe(e);
+                c.getJogos().setId(c.getJogos().getCdEquipe().getId());
+                
+                c.getPontosGols().setCdEquipe(e);
+                c.getPontosGols().setId(c.getPontosGols().getCdEquipe().getId());
+                
+                c.getVitoria().setCdEquipe(e);
+                c.getVitoria().setId(c.getVitoria().getCdEquipe().getId());
+                
                 ShowStatus.Show(c.toString());
                 conn.persist(c);
+                conn.persist(c.getDerrota());
+                conn.persist(c.getEmpate());
+                conn.persist(c.getJogos());
+                conn.persist(c.getPontosGols());
+                conn.persist(c.getVitoria());
+                conn.commit();
             }
-            conn.commit();
+            
             ShowStatus.Show("Classificacao dos Jogos salvos com sucesso");
         } catch (Exception e) {
             conn.rollback();

@@ -1,16 +1,20 @@
 package br.com.wsintegrabolao.obj;
 
+import br.com.wsintegrabolao.dao.ClassificacaoDAO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -54,6 +58,10 @@ public class Equipe implements Serializable {
     @Column(name = "cd_equipe")
     private String id;
 
+    @OneToOne( cascade = CascadeType.ALL )
+    @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe")
+    private ClassificacaoDAO classificacao;
+    
     @JsonProperty("nome")
     @Column(name = "nm_equipe")
     private String nome;
@@ -181,7 +189,7 @@ public class Equipe implements Serializable {
         this.brasao = brasao;
         this.cor = cor;
     }
-
+    
     @JsonProperty("id")
     public String getId() {
         return id;
@@ -280,6 +288,14 @@ public class Equipe implements Serializable {
     @JsonProperty("cor")
     public void setCor(String cor) {
         this.cor = cor;
+    }
+
+    public ClassificacaoDAO getClassificacao() {
+        return classificacao;
+    }
+
+    public void setClassificacao(ClassificacaoDAO classificacao) {
+        this.classificacao = classificacao;
     }
 
 }

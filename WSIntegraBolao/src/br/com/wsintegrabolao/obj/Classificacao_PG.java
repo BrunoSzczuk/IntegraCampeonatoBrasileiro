@@ -14,7 +14,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -31,10 +31,29 @@ public class Classificacao_PG implements Serializable {
     private int total;
 
     @JsonIgnore
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "cd_equipe", referencedColumnName = "cd_equipe")
+    @JoinColumn(name = "cd_equipe")
+    @OneToOne
     private Equipe cdEquipe;
+
+    @Id
+    @Column(name = "cd_equipe")
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Equipe getCdEquipe() {
+        return cdEquipe;
+    }
+
+    public void setCdEquipe(Equipe cdEquipe) {
+        this.cdEquipe = cdEquipe;
+    }
 
     @JsonProperty("mandante")
     @Column(name = "qt_mandante")
@@ -105,10 +124,9 @@ public class Classificacao_PG implements Serializable {
         return true;
     }
 
-    
     @Override
     public String toString() {
-        return "Classificacao_PG{" + "total=" + total + ", mandante=" + mandante + ", visitante=" + visitante + '}';
+        return "Classificacao_PG{" + "total=" + total + ", cdEquipe=" + cdEquipe + ", mandante=" + mandante + ", visitante=" + visitante + '}';
     }
 
 }

@@ -8,6 +8,10 @@
     <class>br.com.wsintegrabolao.obj.Jogo_rodada</class>
     <class>br.com.wsintegrabolao.obj.Classificacao_PG</class>
     <class>br.com.wsintegrabolao.dao.ClassificacaoDAO</class>
+    <class>br.com.wsintegrabolao.obj.Classificacao_DE</class>
+    <class>br.com.wsintegrabolao.obj.Classificacao_EM</class>
+    <class>br.com.wsintegrabolao.obj.Classificacao_JG</class>
+    <class>br.com.wsintegrabolao.obj.Classificacao_VT</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/bolao"/>
       <property name="javax.persistence.jdbc.user" value="aplicacao"/>
