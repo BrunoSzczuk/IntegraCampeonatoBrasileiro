@@ -2,16 +2,16 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
   <persistence-unit name="WSIntegraBolaoPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <class>br.com.wsintegrabolao.obj.Equipe</class>
-    <class>br.com.wsintegrabolao.obj.Jogo_id</class>
-    <class>br.com.wsintegrabolao.obj.Jogo_data</class>
-    <class>br.com.wsintegrabolao.obj.Jogo_rodada</class>
-    <class>br.com.wsintegrabolao.obj.Classificacao_PG</class>
-    <class>br.com.wsintegrabolao.dao.ClassificacaoDAO</class>
-    <class>br.com.wsintegrabolao.obj.Classificacao_DE</class>
-    <class>br.com.wsintegrabolao.obj.Classificacao_EM</class>
-    <class>br.com.wsintegrabolao.obj.Classificacao_JG</class>
-    <class>br.com.wsintegrabolao.obj.Classificacao_VT</class>
+    <class>br.com.integracamponeatobrasileiro.dao.ClassificacaoDAO</class>
+    <class>br.com.integracamponeatobrasileiro.obj.Classificacao_PG</class>
+    <class>br.com.integracamponeatobrasileiro.obj.Classificacao_JG</class>
+    <class>br.com.integracamponeatobrasileiro.obj.Jogo_data</class>
+    <class>br.com.integracamponeatobrasileiro.obj.Classificacao_DE</class>
+    <class>br.com.integracamponeatobrasileiro.obj.Equipe</class>
+    <class>br.com.integracamponeatobrasileiro.obj.Classificacao_EM</class>
+    <class>br.com.integracamponeatobrasileiro.obj.Jogo_rodada</class>
+    <class>br.com.integracamponeatobrasileiro.obj.Classificacao_VT</class>
+    <class>br.com.integracamponeatobrasileiro.obj.Jogo_id</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/bolao"/>
       <property name="javax.persistence.jdbc.user" value="aplicacao"/>
