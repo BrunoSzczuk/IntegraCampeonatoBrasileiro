@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/bolao</property>
+    <property name="hibernate.connection.username">aplicacao</property>
+    <property name="hibernate.connection.password">aplicacao01</property>
+    <mapping resource="br/com/integracampeonatobrasileiro/hbnobj/Equipe.hbm.xml"/>
+    <mapping resource="br/com/integracampeonatobrasileiro/hbnobj/Classificacaojogo.hbm.xml"/>
+    <mapping resource="br/com/integracampeonatobrasileiro/hbnobj/Classificacaovitoria.hbm.xml"/>
+    <mapping resource="br/com/integracampeonatobrasileiro/hbnobj/Classificacaoempate.hbm.xml"/>
+    <mapping resource="br/com/integracampeonatobrasileiro/hbnobj/Jogoid.hbm.xml"/>
+    <mapping resource="br/com/integracampeonatobrasileiro/hbnobj/Rodadajogos.hbm.xml"/>
+    <mapping resource="br/com/integracampeonatobrasileiro/hbnobj/Classificacao.hbm.xml"/>
+    <mapping resource="br/com/integracampeonatobrasileiro/hbnobj/Datajogos.hbm.xml"/>
+    <mapping resource="br/com/integracampeonatobrasileiro/hbnobj/Classificacaopg.hbm.xml"/>
+    <mapping resource="br/com/integracampeonatobrasileiro/hbnobj/Classificacaoderrota.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

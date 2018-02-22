@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="bolao" match-schema="public"/>
+  <table-filter match-name="classificacaovitoria"/>
+  <table-filter match-name="rodadajogos"/>
+  <table-filter match-name="jogoid"/>
+  <table-filter match-name="equipe"/>
+  <table-filter match-name="classificacaoempate"/>
+  <table-filter match-name="classificacaoderrota"/>
+  <table-filter match-name="classificacao"/>
+  <table-filter match-name="datajogos"/>
+  <table-filter match-name="classificacaopg"/>
+  <table-filter match-name="classificacaojogo"/>
+</hibernate-reverse-engineering>
