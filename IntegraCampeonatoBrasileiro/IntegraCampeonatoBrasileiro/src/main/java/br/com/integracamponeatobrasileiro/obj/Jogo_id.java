@@ -85,11 +85,11 @@ public class Jogo_id implements Serializable{
     private String horario;
     
     @JsonProperty("time1")
-    @Column(name = "cd_time1")
+    @Column(name = "cd_equipe1")
     private String time1;
     
     @JsonProperty("time2")
-    @Column(name = "cd_time2")
+    @Column(name = "cd_equipe2")
     private String time2;
     
     @JsonProperty("placar1")
@@ -119,10 +119,6 @@ public class Jogo_id implements Serializable{
     @JsonProperty("estadio")
     @Column(name = "ds_estadio")
     private String estadio;
-    
-    @JsonProperty("estadio_id")
-    @Column(name = "cd_estadio")
-    private String estadioId;
     
     @JsonProperty("local")
     @Column(name = "ds_local")
@@ -195,7 +191,6 @@ public class Jogo_id implements Serializable{
         this.desempateTime1 = desempateTime1;
         this.desempateTime2 = desempateTime2;
         this.estadio = estadio;
-        this.estadioId = estadioId;
         this.local = local;
         this.urlPrejogo = urlPrejogo;
         this.urlPosjogo = urlPosjogo;
@@ -413,22 +408,7 @@ public class Jogo_id implements Serializable{
         this.estadio = estadio;
         return this;
     }
-
-    @JsonProperty("estadio_id")
-    public String getEstadioId() {
-        return estadioId;
-    }
-
-    @JsonProperty("estadio_id")
-    public void setEstadioId(String estadioId) {
-        this.estadioId = estadioId;
-    }
-
-    public Jogo_id withEstadioId(String estadioId) {
-        this.estadioId = estadioId;
-        return this;
-    }
-
+    
     @JsonProperty("local")
     public String getLocal() {
         return local;
@@ -522,12 +502,12 @@ public class Jogo_id implements Serializable{
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("id", id).append("posicao", posicao).append("njogo", njogo).append("rodada", rodada).append("data", data).append("horario", horario).append("time1", time1).append("time2", time2).append("placar1", placar1).append("placar2", placar2).append("penalti1", penalti1).append("penalti2", penalti2).append("desempateTime1", desempateTime1).append("desempateTime2", desempateTime2).append("estadio", estadio).append("estadioId", estadioId).append("local", local).append("urlPrejogo", urlPrejogo).append("urlPosjogo", urlPosjogo).append("urlVideo", urlVideo).append("eliminouJogoVolta", eliminouJogoVolta).append("classificouGolsFora", classificouGolsFora).toString();
+        return new ToStringBuilder(this).append("id", id).append("posicao", posicao).append("njogo", njogo).append("rodada", rodada).append("data", data).append("horario", horario).append("time1", time1).append("time2", time2).append("placar1", placar1).append("placar2", placar2).append("penalti1", penalti1).append("penalti2", penalti2).append("desempateTime1", desempateTime1).append("desempateTime2", desempateTime2).append("estadio", estadio).append("local", local).append("urlPrejogo", urlPrejogo).append("urlPosjogo", urlPosjogo).append("urlVideo", urlVideo).append("eliminouJogoVolta", eliminouJogoVolta).append("classificouGolsFora", classificouGolsFora).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(classificouGolsFora).append(horario).append(placar1).append(eliminouJogoVolta).append(placar2).append(estadio).append(rodada).append(data).append(urlVideo).append(desempateTime1).append(desempateTime2).append(njogo).append(time2).append(posicao).append(urlPosjogo).append(estadioId).append(penalti2).append(penalti1).append(local).append(urlPrejogo).toHashCode();
+        return new HashCodeBuilder().append(classificouGolsFora).append(horario).append(placar1).append(eliminouJogoVolta).append(placar2).append(estadio).append(rodada).append(data).append(urlVideo).append(desempateTime1).append(desempateTime2).append(njogo).append(time2).append(posicao).append(urlPosjogo).append(penalti2).append(penalti1).append(local).append(urlPrejogo).toHashCode();
     }
 
     @Override
@@ -539,7 +519,7 @@ public class Jogo_id implements Serializable{
             return false;
         }
         Jogo_id rhs = ((Jogo_id) other);
-        return new EqualsBuilder().append(classificouGolsFora, rhs.classificouGolsFora).append(horario, rhs.horario).append(placar1, rhs.placar1).append(eliminouJogoVolta, rhs.eliminouJogoVolta).append(placar2, rhs.placar2).append(estadio, rhs.estadio).append(rodada, rhs.rodada).append(data, rhs.data).append(urlVideo, rhs.urlVideo).append(desempateTime1, rhs.desempateTime1).append(desempateTime2, rhs.desempateTime2).append(njogo, rhs.njogo).append(time2, rhs.time2).append(posicao, rhs.posicao).append(urlPosjogo, rhs.urlPosjogo).append(time1, rhs.time1).append(estadioId, rhs.estadioId).append(penalti2, rhs.penalti2).append(penalti1, rhs.penalti1).append(local, rhs.local).append(urlPrejogo, rhs.urlPrejogo).isEquals();
+        return new EqualsBuilder().append(classificouGolsFora, rhs.classificouGolsFora).append(horario, rhs.horario).append(placar1, rhs.placar1).append(eliminouJogoVolta, rhs.eliminouJogoVolta).append(placar2, rhs.placar2).append(estadio, rhs.estadio).append(rodada, rhs.rodada).append(data, rhs.data).append(urlVideo, rhs.urlVideo).append(desempateTime1, rhs.desempateTime1).append(desempateTime2, rhs.desempateTime2).append(njogo, rhs.njogo).append(time2, rhs.time2).append(posicao, rhs.posicao).append(urlPosjogo, rhs.urlPosjogo).append(time1, rhs.time1).append(penalti2, rhs.penalti2).append(penalti1, rhs.penalti1).append(local, rhs.local).append(urlPrejogo, rhs.urlPrejogo).isEquals();
     }
 
 }
