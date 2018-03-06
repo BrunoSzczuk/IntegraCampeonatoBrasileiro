@@ -2,18 +2,18 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
   <persistence-unit name="WSIntegraBolaoPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <class>br.com.integracamponeatobrasileiro.dao.ClassificacaoDAO</class>
-    <class>br.com.integracamponeatobrasileiro.obj.Classificacao_DE</class>
-    <class>br.com.integracamponeatobrasileiro.obj.Classificacao_EM</class>
-    <class>br.com.integracamponeatobrasileiro.obj.Classificacao_JG</class>
-    <class>br.com.integracamponeatobrasileiro.obj.Classificacao_PG</class>
-    <class>br.com.integracamponeatobrasileiro.obj.Classificacao_VT</class>
-    <class>br.com.integracamponeatobrasileiro.obj.Equipe</class>
-    <class>br.com.integracamponeatobrasileiro.obj.Jogo_data</class>
-    <class>br.com.integracamponeatobrasileiro.obj.Jogo_id</class>
-    <class>br.com.integracamponeatobrasileiro.obj.Jogo_rodada</class>
+    <class>br.com.integracampeonatobrasileiro.dao.ClassificacaoDAO</class>
+    <class>br.com.integracampeonatobrasileiro.obj.Jogo_data</class>
+    <class>br.com.integracampeonatobrasileiro.obj.Jogo_id</class>
+    <class>br.com.integracampeonatobrasileiro.obj.Classificacao_EM</class>
+    <class>br.com.integracampeonatobrasileiro.obj.Classificacao_JG</class>
+    <class>br.com.integracampeonatobrasileiro.obj.Classificacao_VT</class>
+    <class>br.com.integracampeonatobrasileiro.obj.Equipe</class>
+    <class>br.com.integracampeonatobrasileiro.obj.Jogo_rodada</class>
+    <class>br.com.integracampeonatobrasileiro.obj.Classificacao_DE</class>
+    <class>br.com.integracampeonatobrasileiro.obj.Classificacao_PG</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://172.31.32.47/bolao"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://bolao.cacznkwpq5yo.us-east-2.rds.amazonaws.com:5432/bolao"/>
       <property name="javax.persistence.jdbc.user" value="bruno"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.password" value="brunosoad02"/>
