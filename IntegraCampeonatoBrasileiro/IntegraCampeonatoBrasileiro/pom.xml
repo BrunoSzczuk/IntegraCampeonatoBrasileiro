@@ -70,9 +70,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-
         </dependency>
-
     </dependencies>
     <build>
         <plugins>
@@ -85,6 +83,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>
