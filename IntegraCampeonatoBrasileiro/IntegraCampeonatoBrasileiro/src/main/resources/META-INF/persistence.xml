@@ -12,11 +12,12 @@
     <class>br.com.integracampeonatobrasileiro.obj.Jogo_rodada</class>
     <class>br.com.integracampeonatobrasileiro.obj.Classificacao_DE</class>
     <class>br.com.integracampeonatobrasileiro.obj.Classificacao_PG</class>
+    <class>br.com.integracampeonatobrasileiro.obj.RodadaPK</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://bolao.cacznkwpq5yo.us-east-2.rds.amazonaws.com:5432/bolao"/>
-      <property name="javax.persistence.jdbc.user" value="bruno"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/bolao"/>
+      <property name="javax.persistence.jdbc.user" value="aplicacao"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="brunosoad02"/>
+      <property name="javax.persistence.jdbc.password" value="aplicacao01"/>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
     </properties>
   </persistence-unit>

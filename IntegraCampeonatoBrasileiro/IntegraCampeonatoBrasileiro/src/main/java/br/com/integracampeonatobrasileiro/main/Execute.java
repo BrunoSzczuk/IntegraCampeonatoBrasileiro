@@ -16,6 +16,8 @@ import br.com.integracampeonatobrasileiro.cliente.ConexaoWS;
 import br.com.integracampeonatobrasileiro.dao.ClassificacaoDAO;
 import br.com.integracampeonatobrasileiro.dao.ConexaoDAO;
 import br.com.integracampeonatobrasileiro.dao.IntegraCamponeatoBrasileiroController;
+import br.com.integracampeonatobrasileiro.obj.Rodada;
+import br.com.integracampeonatobrasileiro.obj.RodadaPK;
 import br.com.integracampeonatobrasileiro.util.ShowStatus;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,9 +33,10 @@ public class Execute {
     public static void main(String[] args) {
         String json = ConexaoWS.getJsonBolao(ANO);
         loadEquipe(json);
+        loadRodada(json);
         loadJogo(json);
         loadData(json);
-        loadRodada(json);
+        loadRodadaJogos(json);
         loadClassificacao(json);
         System.exit(0);
     }
@@ -104,18 +107,19 @@ public class Execute {
         }
     }
 
-    public static void loadRodada(String json) {
+    public static void loadRodadaJogos(String json) {
         ShowStatus.Show("****************************************");
         ShowStatus.Show("**   Atualização de Rodada dos Jogos  ***");
         ShowStatus.Show("****************************************");
         ConexaoDAO conn = ConexaoDAO.getInstance();
         try {
-            conn.startTransaction();
             ArrayList<Fase> fase = new ArrayList<>(ClienteWSController.buscaFase(json));
-            ArrayList<Jogo_rodada[]> rodadas = new ArrayList<>(fase.get(0).getJogos().getRodada().values());
-            for (Jogo_rodada[] r : rodadas) {
+            ArrayList<Jogo_rodada[]> jogosrodadas = new ArrayList<>(fase.get(0).getJogos().getRodada().values());
+            conn.startTransaction();
+            for (Jogo_rodada[] r : jogosrodadas) {                
                 ShowStatus.Show(Arrays.toString(r));
                 for (Jogo_rodada rd : r) {
+                    
                     conn.persist(rd);
                 }
             }
@@ -134,29 +138,29 @@ public class Execute {
         ShowStatus.Show("****************************************");
         ConexaoDAO conn = ConexaoDAO.getInstance();
         try {
-            
+
             ArrayList<Fase> fase = new ArrayList<>(ClienteWSController.buscaFase(json));
             ArrayList<Classificacao_equipe> classificacao = new ArrayList<>(fase.get(0).getClassificacao().getData().values());
             for (Classificacao_equipe cl : classificacao) {
                 conn.startTransaction();
                 ClassificacaoDAO c = new ClassificacaoDAO(cl);
                 Equipe e = IntegraCamponeatoBrasileiroController.buscaEquipe(cl.getId());
-                
+
                 c.getDerrota().setCdEquipe(e);
                 c.getDerrota().setId(c.getDerrota().getCdEquipe().getId());
-                
+
                 c.getEmpate().setCdEquipe(e);
                 c.getEmpate().setId(c.getEmpate().getCdEquipe().getId());
-                
+
                 c.getJogos().setCdEquipe(e);
                 c.getJogos().setId(c.getJogos().getCdEquipe().getId());
-                
+
                 c.getPontosGols().setCdEquipe(e);
                 c.getPontosGols().setId(c.getPontosGols().getCdEquipe().getId());
-                
+
                 c.getVitoria().setCdEquipe(e);
                 c.getVitoria().setId(c.getVitoria().getCdEquipe().getId());
-                
+
                 ShowStatus.Show(c.toString());
                 conn.persist(c);
                 conn.persist(c.getDerrota());
@@ -166,12 +170,33 @@ public class Execute {
                 conn.persist(c.getVitoria());
                 conn.commit();
             }
-            
+
             ShowStatus.Show("Classificacao dos Jogos salvos com sucesso");
         } catch (Exception e) {
             conn.rollback();
             e.printStackTrace();
             ShowStatus.Show("Erro: br.com.integracamponeatobrasileiro.main.Execute.loadClassificacao " + e.getMessage());
+        }
+    }
+
+    private static void loadRodada(String json) {
+        ConexaoDAO conn = ConexaoDAO.getInstance();
+        try {
+
+            conn.startTransaction();
+            ArrayList<Fase> fase = new ArrayList<>(ClienteWSController.buscaFase(json));
+            ArrayList<Jogo_rodada[]> jogosrodadas = new ArrayList<>(fase.get(0).getJogos().getRodada().values());
+            for (Jogo_rodada[] r : jogosrodadas) {
+                Rodada rodada = new Rodada(new RodadaPK(r[0].getPk().getRodada().getCdRodada()));
+                // System.out.println(rodada);
+                conn.persist(rodada);
+
+            }
+            conn.commit();
+        } catch (Exception e) {
+            conn.rollback();
+            e.printStackTrace();
+            ShowStatus.Show("Erro: br.com.integracamponeatobrasileiro.main.Execute.loadRodada " + e.getMessage());
         }
     }
 }

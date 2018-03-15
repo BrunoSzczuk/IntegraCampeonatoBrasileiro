@@ -23,8 +23,12 @@ public class Jogo_rodada implements Serializable{
     @EmbeddedId
     private Jogo_rodadaPK pk;
 
+    public Jogo_rodada(String jogo, String rodada){
+        this.pk =  new Jogo_rodadaPK(new RodadaPK(Integer.parseInt(rodada)) , new JogoPK( Integer.parseInt(jogo)));
+    }
+    
     public Jogo_rodada(String jogo){
-        this.pk =  new Jogo_rodadaPK(new JogoPK(Integer.parseInt(jogo)), 0);
+        this.pk = new Jogo_rodadaPK(new RodadaPK(0) , new JogoPK( Integer.parseInt(jogo)));
     }
 
     @Override

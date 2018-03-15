@@ -16,6 +16,7 @@ import br.com.integracampeonatobrasileiro.obj.Jogo_data;
 import br.com.integracampeonatobrasileiro.obj.Jogo_dataPK;
 import br.com.integracampeonatobrasileiro.obj.Jogo_rodada;
 import br.com.integracampeonatobrasileiro.obj.Jogo_rodadaPK;
+import br.com.integracampeonatobrasileiro.obj.RodadaPK;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -69,7 +70,7 @@ public class ClienteWSController {
             //Pegar a rodada do Jogo_rodada
             for (Object key : fases.get(0).getJogos().getRodada().keySet()) {
                 for (Jogo_rodada r : fases.get(0).getJogos().getRodada().get(key)) {
-                    r.setPk(new Jogo_rodadaPK(r.getPk().getJogo(), (int) key));
+                    r.setPk(new Jogo_rodadaPK(new RodadaPK((int)key) ,r.getPk().getJogo()));
                 }
             }
         } catch (Exception e) {
