@@ -5,19 +5,12 @@
  */
 package br.com.integracampeonatobrasileiro.main;
 
-import br.com.integracampeonatobrasileiro.obj.Jogo_data;
-import br.com.integracampeonatobrasileiro.obj.Jogo_id;
-import br.com.integracampeonatobrasileiro.obj.Classificacao_equipe;
-import br.com.integracampeonatobrasileiro.obj.Jogo_rodada;
-import br.com.integracampeonatobrasileiro.obj.Fase;
-import br.com.integracampeonatobrasileiro.obj.Equipe;
+import br.com.integracampeonatobrasileiro.obj.*;
 import br.com.integracampeonatobrasileiro.cliente.ClienteWSController;
 import br.com.integracampeonatobrasileiro.cliente.ConexaoWS;
 import br.com.integracampeonatobrasileiro.dao.ClassificacaoDAO;
 import br.com.integracampeonatobrasileiro.dao.ConexaoDAO;
 import br.com.integracampeonatobrasileiro.dao.IntegraCamponeatoBrasileiroController;
-import br.com.integracampeonatobrasileiro.obj.Rodada;
-import br.com.integracampeonatobrasileiro.obj.RodadaPK;
 import br.com.integracampeonatobrasileiro.util.ShowStatus;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,6 +31,7 @@ public class Execute {
         loadData(json);
         loadRodadaJogos(json);
         loadClassificacao(json);
+        loadCompeticao(json);
         System.exit(0);
     }
 
@@ -199,4 +193,24 @@ public class Execute {
             ShowStatus.Show("Erro: br.com.integracamponeatobrasileiro.main.Execute.loadRodada " + e.getMessage());
         }
     }
+    
+    public static void loadCompeticao(String json){
+        ShowStatus.Show("************************************");
+        ShowStatus.Show("**     Atualização de Competicao    ***");
+        ShowStatus.Show("************************************");
+        ConexaoDAO conn = ConexaoDAO.getInstance();
+        try {
+            conn.startTransaction();
+            
+            Competicao c = ClienteWSController.buscaCompeticao(json);
+            ShowStatus.Show(c.toString());
+            conn.persist(c);
+            conn.commit();
+        } catch (Exception e) {
+            conn.rollback();
+            e.printStackTrace();
+        }
+        ShowStatus.Show("Competicao salva com sucesso");
+    }
+
 }

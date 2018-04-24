@@ -1,22 +1,11 @@
-/*
+/**
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package br.com.integracampeonatobrasileiro.cliente;
 
-import br.com.integracampeonatobrasileiro.obj.Equipe;
-import br.com.integracampeonatobrasileiro.obj.EquipeList;
-import br.com.integracampeonatobrasileiro.obj.Fase;
-import br.com.integracampeonatobrasileiro.obj.FaseList;
-import br.com.integracampeonatobrasileiro.obj.Jogo_id;
-import br.com.integracampeonatobrasileiro.obj.JogoList;
-import br.com.integracampeonatobrasileiro.obj.JogoPK;
-import br.com.integracampeonatobrasileiro.obj.Jogo_data;
-import br.com.integracampeonatobrasileiro.obj.Jogo_dataPK;
-import br.com.integracampeonatobrasileiro.obj.Jogo_rodada;
-import br.com.integracampeonatobrasileiro.obj.Jogo_rodadaPK;
-import br.com.integracampeonatobrasileiro.obj.RodadaPK;
+import br.com.integracampeonatobrasileiro.obj.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -77,5 +66,15 @@ public class ClienteWSController {
             e.printStackTrace();
         }
         return fases;
+    }
+    
+    public static Competicao buscaCompeticao(String json){
+        Competicao c = new Competicao();
+        try {
+            c = mapper.readValue(json, Competicao.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return c;
     }
 }
